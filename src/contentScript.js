@@ -80,11 +80,15 @@ const onKeyDown = async (input) => {
       // document.execCommand("delete", false, null);
       // todo: use alternative to deprecated document.execCommand
       document.execCommand("selectAll", false, null);
+      const replaceWithImg = ()=>{
+        document.querySelector('span[data-slate-string="true"]').innerHTML = `<img src="${result[match]}">`;
+      }
       setTimeout(() => {
         document.execCommand("paste");
         setTimeout(()=>{
-          document.querySelector('span[data-slate-string="true"]').innerHTML = `<img src="${result[match]}">`;
-        }, 70)
+          replaceWithImg()
+          setTimeout(replaceWithImg, 1500)
+        }, 100)
         
       }, 100);
     }
