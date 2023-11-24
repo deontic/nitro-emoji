@@ -84,7 +84,7 @@ const onKeyDown = async (input) => {
         document.execCommand("paste");
         setTimeout(()=>{
           document.querySelector('span[data-slate-string="true"]').innerHTML = `<img src="${result[match]}">`;
-        }, 50)
+        }, 70)
         
       }, 100);
     }
