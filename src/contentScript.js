@@ -78,7 +78,7 @@ const onKeyDown = async (input) => {
       // document.querySelector('span[data-slate-string="true"]').textContent = replacement;
       // input.textContent = txt.replace(r, result[match]);
       // document.execCommand("delete", false, null);
-      // todo: use non deprecated features
+      // todo: use alternative to deprecated document.execCommand
       document.execCommand("selectAll", false, null);
       setTimeout(() => {
         document.execCommand("paste");
