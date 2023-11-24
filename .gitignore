@@ -5,7 +5,7 @@
 /node_modules
 
 # misc
-.info
+info.md
 .eslintrc.yml
 npm-debug.log*
 package-lock.json
