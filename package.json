@@ -1,0 +1,20 @@
+{
+  "name": "nitro-emoji",
+  "version": "0.1.0",
+  "description": "copy custom emojis on discord and use them without nitro - not inline",
+  "private": true,
+  "scripts": {
+    "watch": "webpack --mode=development --watch --config config/webpack.config.js",
+    "build": "webpack --mode=production --config config/webpack.config.js"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.4.1",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^0.10.1",
+    "size-plugin": "^2.0.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.7.3"
+  }
+}

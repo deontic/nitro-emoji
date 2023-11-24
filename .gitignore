@@ -1,0 +1,11 @@
+# production
+/build
+
+# dependencies
+/node_modules
+
+# misc
+.info
+.eslintrc.yml
+npm-debug.log*
+package-lock.json
