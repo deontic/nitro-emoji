@@ -43,9 +43,10 @@ document.addEventListener("click", async (e) => {
 let prevText;
 
 const setImg = (match) => {
-  document.querySelector(
-    'span[data-slate-string="true"]'
-  ).innerHTML = `<img src="${match}">`;
+  const inner = document.querySelector('span[data-slate-string="true"]');
+  if (inner) {
+    inner.innerHTML = `<img src="${match}">`;
+  }
 };
 const onKeyDown = async (input) => {
   await new Promise((resolve, reject) => {
