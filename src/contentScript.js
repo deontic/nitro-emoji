@@ -43,20 +43,9 @@ document.addEventListener("click", async (e) => {
 let prevText;
 
 const setImg = (match) => {
-  // console.log("setting");
   document.querySelector(
     'span[data-slate-string="true"]'
   ).innerHTML = `<img src="${match}">`;
-
-  // entering spacebar quickly after url keeps link below img, fix
-  // document.querySelector(
-  //   "#app-mount > div.appAsidePanelWrapper__714a6 > div.notAppAsidePanel__9d124 > div.app_b1f720 > div > div.layers__1c917.layers_a23c37 > div > div > div > div > div.chat__52833 > div.content__1a4fe > div > div.chatContainer__23434 > main > form > div > div > div > div.textArea__74543.textAreaSlate_e0e383.slateContainer_b692b3 > div > div > div"
-  // ).innerHTML = `<img src="${match}">`;
-
-
-  // console.log( document.querySelector(
-  //   'span[data-slate-string="true"]'
-  // ).innerHTML)
 };
 const onKeyDown = async (input) => {
   await new Promise((resolve, reject) => {
