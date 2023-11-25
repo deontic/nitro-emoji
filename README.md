@@ -3,7 +3,7 @@
 minimal extension to send custom emoji (not in-line)
 
 * click "steal" to copy emoji url with with a predefined size
-  ![img describing the above info](image-1.png)
+  ![img describing the above info](./docs/image.png)
 
 * saves emoji markdown using [chrome storage.sync](https://developer.chrome.com/docs/extensions/reference/storage/) 
 
