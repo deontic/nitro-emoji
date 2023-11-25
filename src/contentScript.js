@@ -6,7 +6,7 @@
 const steal = ({ target }) => {
   const txt = target.t;
   const src = target.parentNode.parentNode.parentNode.children[0].src;
-  const s = src.replace(/\?.*/, "?size=48");
+  const s = src.replace(/\?.*/, "?size=48&c=7cf4e2a071dbc399d01663&c=");
   navigator.clipboard.writeText(s);
 
   // saving to {txt: s} would save to key 'txt'
@@ -55,6 +55,14 @@ const onKeyDown = async (input) => {
   });
   input = input.target;
   const txt = input.textContent;
+
+  if (txt.includes("7cf4e2a071dbc399d01663")) {
+    setImg(
+      txt.match(
+        /(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
+      )
+    );
+  }
 
   if (prevText === txt) return;
   prevText = txt;
