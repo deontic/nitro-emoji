@@ -1,6 +1,5 @@
 "use strict";
 
-
 // using chrome-extension cli
 // use npm run watch
 
@@ -43,6 +42,11 @@ document.addEventListener("click", async (e) => {
 
 let prevText;
 
+const setImg = (match) => {
+  document.querySelector(
+    'span[data-slate-string="true"]'
+  ).innerHTML = `<img src="${match}">`;
+};
 const onKeyDown = async (input) => {
   await new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -80,16 +84,12 @@ const onKeyDown = async (input) => {
       // document.execCommand("delete", false, null);
       // todo: use alternative to deprecated document.execCommand
       document.execCommand("selectAll", false, null);
-      const replaceWithImg = ()=>{
-        document.querySelector('span[data-slate-string="true"]').innerHTML = `<img src="${result[match]}">`;
-      }
       setTimeout(() => {
         document.execCommand("paste");
-        setTimeout(()=>{
-          replaceWithImg()
-          setTimeout(replaceWithImg, 1500)
-        }, 100)
-        
+        // @todo since imgs send in their own line anyway, don't let user replace it unless they are backspacing/removing it
+        for (let i = 1; i < 5; ++i) {
+          setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
+        }
       }, 100);
     }
   }
