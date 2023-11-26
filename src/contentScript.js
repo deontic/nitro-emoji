@@ -40,15 +40,56 @@ document.addEventListener("click", async (e) => {
   }
 });
 
-let prevText;
+// let prevText;
 
+// let iHeight;
 const setImg = (match) => {
-  const inner = document.querySelector('span[data-slate-string="true"]');
-  if (inner) {
-    inner.innerHTML = `<img src="${match}">`;
-  }
+  // const container = document.querySelector('span[data-slate-node="text"]');
+  // container.replaceChildren(container.children[0])
+
+  // container.innerHTML = ''
+
+  // document.querySelector('div[role="textbox"]').textContent = ''
+
+  setTimeout(() => {
+    document.execCommand("selectAll", false, null);
+    setTimeout(() => {
+      document.execCommand("paste");
+      setTimeout(()=>{
+        const inner = document.querySelector('span[data-slate-string="true"]');
+        if (inner) {
+          inner.innerHTML = `<img src="${match}">`;
+        }
+      }, 100)
+    
+    }, 200);
+  }, 50);
 };
+
+// const inner = document.querySelectorAll('span[data-slate-string="true"]');
+// if (inner) {
+// inner[0].innerHTML = `<img src="${match}">`;
+// console.log('inner::::', inner)
+
+// const el = document.createElement('img')
+// el.setAttribute('src', match)
+// inner[0].appendChild(el)
+
+// console.log("removing: ", document.querySelector(".fakeLink__57dfc"));
+// document.querySelector(".fakeLink__57dfc").remove();
+
+// if (inner.length > 1) {
+//   console.log("more than 11111");
+//   inner[1].parentElement.removeChild(inner[1]);
+// }
+// if (document.querySelector(".slateContainer_b692b3")) {
+//   document.querySelector(".slateContainer_b692b3").style.height = iHeight;
+// }
+//   }
+// };
 const onKeyDown = async (input) => {
+  // if ()
+
   await new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
@@ -74,21 +115,33 @@ const onKeyDown = async (input) => {
   }
   */
 
-  if (prevText === txt) return;
-  prevText = txt;
+  // if (prevText === txt) {console.log('not running'); return};
+  // prevText = txt;
 
   // const r = /:([^:]+):/;
   const r = /:([^:]+)/;
   const found = txt.match(r);
 
+  console.log("found = ", found);
+
   if (found) {
     let result, match;
     try {
       match = found[1];
+
+      /// not working ????????
+      // randomly stops working.....................................
+      ///...........
+      // error in Network tab says web request not authorized or smth
+      // maybe check what url is being saved and maybe check if ?c= is ruining stuff
+      // ????????????
+      // what changed recently bro fix it
+
       match = `:${match.replace("Emoji", "").replace("matching", "").trim()}:`;
-      // console.log('retrieving.......', match)
+      console.log("retrieving.......", match);
       result = await chrome.storage.sync.get([match]);
     } catch (e) {
+      console.log("error while retrieving: ", e);
       return;
     }
     if (
@@ -105,7 +158,7 @@ const onKeyDown = async (input) => {
       setTimeout(() => {
         document.execCommand("paste");
         // @todo since imgs send in their own line anyway, don't let user replace it unless they are backspacing/removing it
-        for (let i = 1; i < 5; ++i) {
+        for (let i = 1; i < 2; ++i) { // i=5
           setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
         }
       }, 100);
@@ -116,6 +169,11 @@ const ii = setInterval(() => {
   const input = document.querySelector("form>div");
   if (input) {
     input.addEventListener("keydown", onKeyDown);
+    // iHeight = document.querySelector(".slateContainer_b692b3").style.height;
     clearInterval(ii);
   }
 }, 400);
+
+setInterval(() => {
+  console.log("..");
+}, 5000);
