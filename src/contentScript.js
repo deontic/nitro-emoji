@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // using chrome-extension cli
 // use npm run watch
@@ -6,7 +6,7 @@
 const steal = ({ target }) => {
   const txt = target.t;
   const src = target.parentNode.parentNode.parentNode.children[0].src;
-  const s = src.replace(/\?.*/, "?size=48&c="); //7cf4e2a071dbc399d01663&c=");
+  const s = src.replace(/\?.*/, '?size=48&c='); //7cf4e2a071dbc399d01663&c=");
   navigator.clipboard.writeText(s);
 
   // saving to {txt: s} would save to key 'txt'
@@ -15,21 +15,21 @@ const steal = ({ target }) => {
   chrome.storage.sync.set(obj);
 };
 
-document.addEventListener("click", async (e) => {
-  if (e.target.classList.contains("emoji")) {
+document.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('emoji')) {
     const maxWait = 20; // * 250ms (5000ms)
     let i = 0;
     const self = setInterval(() => {
       const label = document.getElementsByClassName(
-        "defaultColor__77578 text-md-semibold__4cb23"
+        'defaultColor__77578 text-md-semibold__4cb23'
       )[0];
       if (label) {
         const content = label.textContent;
         label.innerHTML += '<a id="steal_content">(steal)</a>';
-        const steal1 = document.getElementById("steal_content");
+        const steal1 = document.getElementById('steal_content');
         steal1.t = content;
 
-        steal1.addEventListener("click", steal);
+        steal1.addEventListener('click', steal);
       }
       // either use an arbitrary wait time
       // or wait till the element is added
@@ -42,7 +42,7 @@ document.addEventListener("click", async (e) => {
 
 // let prevText;
 
-// let iHeight;
+let iHeight;
 const setImg = (match) => {
   // const container = document.querySelector('span[data-slate-node="text"]');
   // container.replaceChildren(container.children[0])
@@ -52,16 +52,16 @@ const setImg = (match) => {
   // document.querySelector('div[role="textbox"]').textContent = ''
 
   setTimeout(() => {
-    document.execCommand("selectAll", false, null);
+    document.execCommand('selectAll', false, null);
     setTimeout(() => {
-      document.execCommand("paste");
-      setTimeout(()=>{
+      document.execCommand('paste');
+      setTimeout(() => {
         const inner = document.querySelector('span[data-slate-string="true"]');
         if (inner) {
           inner.innerHTML = `<img src="${match}">`;
+          document.querySelector('.textArea__74543').style.height = iHeight;
         }
-      }, 100)
-    
+      }, 100);
     }, 200);
   }, 50);
 };
@@ -88,7 +88,13 @@ const setImg = (match) => {
 //   }
 // };
 const onKeyDown = async (input) => {
-  // if ()
+  if (input.key === 'Backspace' || input.key === 'Delete') {
+    const inner = document.querySelector('span[data-slate-string="true"]');
+    if (inner) {
+      inner.innerHTML = '';
+    }
+    return;
+  }
 
   await new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -122,31 +128,19 @@ const onKeyDown = async (input) => {
   const r = /:([^:]+)/;
   const found = txt.match(r);
 
-  console.log("found = ", found);
-
   if (found) {
     let result, match;
     try {
       match = found[1];
-
-      /// not working ????????
-      // randomly stops working.....................................
-      ///...........
-      // error in Network tab says web request not authorized or smth
-      // maybe check what url is being saved and maybe check if ?c= is ruining stuff
-      // ????????????
-      // what changed recently bro fix it
-
-      match = `:${match.replace("Emoji", "").replace("matching", "").trim()}:`;
-      console.log("retrieving.......", match);
+      match = `:${match.replace('Emoji', '').replace('matching', '').trim()}:`;
       result = await chrome.storage.sync.get([match]);
     } catch (e) {
-      console.log("error while retrieving: ", e);
+      console.log('error while retrieving: ', e);
       return;
     }
     if (
       Object.keys(result).length != 0 &&
-      !input.textContent.includes("Message ")
+      !input.textContent.includes('Message ')
     ) {
       navigator.clipboard.writeText(result[match]);
       // discord won't let you automate input into the textbox
@@ -154,26 +148,43 @@ const onKeyDown = async (input) => {
       // input.textContent = txt.replace(r, result[match]);
       // document.execCommand("delete", false, null);
       // todo: use alternative to deprecated document.execCommand
-      document.execCommand("selectAll", false, null);
+      document.execCommand('selectAll', false, null);
       setTimeout(() => {
-        document.execCommand("paste");
+        document.execCommand('paste');
         // @todo since imgs send in their own line anyway, don't let user replace it unless they are backspacing/removing it
-        for (let i = 1; i < 2; ++i) { // i=5
+        for (let i = 1; i < 2; ++i) {
+          // i=5
           setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
         }
       }, 100);
     }
   }
 };
-const ii = setInterval(() => {
-  const input = document.querySelector("form>div");
-  if (input) {
-    input.addEventListener("keydown", onKeyDown);
-    // iHeight = document.querySelector(".slateContainer_b692b3").style.height;
-    clearInterval(ii);
-  }
-}, 400);
 
-setInterval(() => {
-  console.log("..");
-}, 5000);
+// use mutationobserver or smth 💀💀💀💀💀💀💀💀💀💀💀💀 🤫🤫
+const ii = setInterval(() => {
+  // 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀
+  const input = document.querySelector('form>div');
+  if (input) {
+    input.addEventListener('keydown', onKeyDown);
+    if (!iHeight) {
+      const tArea = document.querySelector('.textArea__74543');
+      if (tArea) {
+        iHeight = tArea.scrollHeight;
+      }
+      console.log('i', iHeight, '<<<<<<<<,');
+    } else {
+      console.log('fixing pt 1');
+      if (
+        !document.querySelector('.data-slate-string')
+        // !document.getElementById('xx_stolenimg')
+      ) {
+        console.log('fixing pt 2');
+        document.querySelector('.slateContainer_b692b3').style.height =
+          iHeight + 'px';
+      }
+    }
+    // in case "form>div" disappears
+    // clearInterval(ii);
+  }
+}, 100);
