@@ -56,11 +56,11 @@ const setImg = (match) => {
     setTimeout(() => {
       document.execCommand('paste');
       setTimeout(() => {
-        const inner = document.querySelector('span[data-slate-string="true"]');
-        if (inner) {
-          inner.innerHTML = `<img src="${match}">`;
-          // document.querySelector('.textArea__74543').style.height = iHeight;
-        }
+        // const inner = document.querySelector('span[data-slate-string="true"]');
+        // if (inner) {
+        //   inner.innerHTML = `<img src="${match}">`;
+        //   // document.querySelector('.textArea__74543').style.height = iHeight;
+        // }
       }, 100);
     }, 200);
   }, 50);
@@ -154,7 +154,7 @@ const onKeyDown = async (input) => {
         // @todo since imgs send in their own line anyway, don't let user replace it unless they are backspacing/removing it
         for (let i = 1; i < 2; ++i) {
           // i=5
-          // setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
+          setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
           //////////////// disabling for now cz it makes the textbox weird and not resize vertically sometimes
         }
       }, 100);
