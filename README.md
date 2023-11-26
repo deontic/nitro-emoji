@@ -8,7 +8,7 @@
 
 * saves emoji markdown using [chrome storage.sync](https://developer.chrome.com/docs/extensions/reference/storage/) 
 
-* when emoji markdown is typed in the textbox, it is replaced with its img url if you've clicked "steal" for it before; for example, typing ``:skullcry:`` (see img above) would replace ur current input with a modified url, and visually replace the url with the image as well
+* when emoji markdown is typed in the textbox, it is replaced with its img url if you've clicked "steal" for it before; for example, typing ``:skullcry:`` (see img above) would replace ur current input with a modified url, and visually replace the url with the image as well **note: the visual preview in the text box has been temporarily disabled but sending the link itself should work fine too**
 * because discord doesn't support inline image embeds for users, you can only use one emoji per line, so send it in a separate text message 
 
 ## installation
