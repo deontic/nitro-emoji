@@ -154,7 +154,8 @@ const onKeyDown = async (input) => {
         // @todo since imgs send in their own line anyway, don't let user replace it unless they are backspacing/removing it
         for (let i = 1; i < 2; ++i) {
           // i=5
-          setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
+          // setTimeout(setImg.bind(null, result[match]), 50 * i ** 2.65);
+          //////////////// disabling for now cz it makes the textbox weird and not resize vertically sometimes
         }
       }, 100);
     }
