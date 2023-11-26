@@ -42,7 +42,7 @@ document.addEventListener('click', async (e) => {
 
 // let prevText;
 
-let iHeight;
+// let iHeight;
 const setImg = (match) => {
   // const container = document.querySelector('span[data-slate-node="text"]');
   // container.replaceChildren(container.children[0])
@@ -59,7 +59,7 @@ const setImg = (match) => {
         const inner = document.querySelector('span[data-slate-string="true"]');
         if (inner) {
           inner.innerHTML = `<img src="${match}">`;
-          document.querySelector('.textArea__74543').style.height = iHeight;
+          // document.querySelector('.textArea__74543').style.height = iHeight;
         }
       }, 100);
     }, 200);
@@ -167,24 +167,25 @@ const ii = setInterval(() => {
   const input = document.querySelector('form>div');
   if (input) {
     input.addEventListener('keydown', onKeyDown);
-    if (!iHeight) {
-      const tArea = document.querySelector('.textArea__74543');
-      if (tArea) {
-        iHeight = tArea.scrollHeight;
-      }
-      console.log('i', iHeight, '<<<<<<<<,');
-    } else {
-      console.log('fixing pt 1');
-      if (
-        !document.querySelector('.data-slate-string')
-        // !document.getElementById('xx_stolenimg')
-      ) {
-        console.log('fixing pt 2');
-        document.querySelector('.slateContainer_b692b3').style.height =
-          iHeight + 'px';
-      }
-    }
-    // in case "form>div" disappears
-    // clearInterval(ii);
+    // if (!iHeight) {
+    //   const tArea = document.querySelector('.textArea__74543');
+    //   if (tArea) {
+    //     iHeight = tArea.scrollHeight;
+    //   }
+    // console.log('i', iHeight, '<<<<<<<<,');
+    // }
+
+    // else if (
+    //   !document.querySelector('.data-slate-string')
+    //   // !document.getElementById('xx_stolenimg')
+    // ) {
+    //   const slate = document.querySelector('.slateContainer_b692b3');
+    //   if (slate) {
+    //     slate.style.height = iHeight + 'px';
+    // }
   }
+
+  // in case "form>div" disappears
+  // clearInterval(ii);
+  // }
 }, 100);
