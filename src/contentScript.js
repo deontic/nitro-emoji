@@ -103,14 +103,14 @@ const onKeyDown = async (input) => {
   });
   input = input.target;
   const txt = input.textContent;
-  /*
   if (
-    input.key === "Backspace" ||
-    input.key === "Delete" ||
-    input.key === "Space"
+    input.key === 'Backspace' ||
+    input.key === 'Delete' ||
+    input.key === 'Space'
   ) {
     return;
   }
+  /*
 
   if (txt.includes("7cf4e2a071dbc399d01663")) {
     setImg(
