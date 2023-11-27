@@ -88,13 +88,13 @@ const setImg = (match) => {
 //   }
 // };
 const onKeyDown = async (input) => {
-  if (input.key === 'Backspace' || input.key === 'Delete') {
-    const inner = document.querySelector('span[data-slate-string="true"]');
-    if (inner) {
-      inner.innerHTML = '';
-    }
-    return;
-  }
+  // if (input.key === 'Backspace' || input.key === 'Delete') {
+  //   const inner = document.querySelector('span[data-slate-string="true"]');
+  //   if (inner) {
+  //     inner.innerHTML = '';
+  //   }
+  //   return;
+  // }
 
   await new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -103,13 +103,13 @@ const onKeyDown = async (input) => {
   });
   input = input.target;
   const txt = input.textContent;
-  if (
-    input.key === 'Backspace' ||
-    input.key === 'Delete' ||
-    input.key === 'Space'
-  ) {
-    return;
-  }
+  // if (
+  //   input.key === 'Backspace' ||
+  //   input.key === 'Delete' ||
+  //   input.key === 'Space'
+  // ) {
+  //   return;
+  // }
   /*
 
   if (txt.includes("7cf4e2a071dbc399d01663")) {
