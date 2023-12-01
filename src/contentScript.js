@@ -1,8 +1,10 @@
 'use strict';
 
-// this'll probably break when there's a discord ui update
-// chrome-extension cli
-// use npm run watch
+/*
+   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   !this'll probably break when there's a discord ui update!
+   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
 
 const steal = ({ target }) => {
   const txt = target.t;
