@@ -1,6 +1,6 @@
 'use strict';
 
-// using chrome-extension cli
+// chrome-extension cli
 // use npm run watch
 
 const steal = ({ target }) => {
